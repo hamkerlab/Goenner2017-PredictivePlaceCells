@@ -273,10 +273,12 @@ def stim(saving, nTrials, i_seed): # main function for recall / sequence generat
         #'''#
         # TEST: Provide "learned" weight matrix
         filename = 'learned_weights_DGinp'
-        file_wdata_VC_PC = open('data/'+filename, 'r') 
-        Wdata_VC_PC=pickle.load(file_wdata_VC_PC) 
+
+        file_wdata_VC_PC = open('data/'+filename, 'rb') 
+        Wdata_VC_PC=pickle.load(file_wdata_VC_PC, encoding='latin1') 
         file_wdata_VC_PC.close()
-        print(("file = ", filename))
+        print("file = ", filename)
+
         placevalMat = Wdata_VC_PC * 1e12 #*1e9 #* 0.5 # convert to nA - wdata from file are in ampere, max. ca. 1e-9 - caution, tau_exc is now 4x larger than previously!!!
         placevalMat = (Wdata_VC_PC * 1e12)**0.635 # * 1e9)**0.635
         #'''
